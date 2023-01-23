@@ -20,6 +20,7 @@ class App extends Component{
     e.preventDefault()
     console.log('Test')
   }
+  
 
 
 
@@ -27,7 +28,7 @@ class App extends Component{
   render() {
     return (
       <>
-        <h1>Test</h1>
+        <h1>Countries Dictionary</h1>
         <form> 
           <input 
             type='text' 
