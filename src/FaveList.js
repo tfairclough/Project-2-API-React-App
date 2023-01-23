@@ -10,6 +10,8 @@ export default class FaveList extends Component {
         <ul>
           {faveList}
         </ul>
+        <button>Clear Selected</button>
+        <button onClick={this.props.clearFaves}>Clear All</button>
       </>
     )
   }

@@ -49,6 +49,12 @@ class App extends Component{
     })
   }
 
+  clearFaves = () => {
+    this.setState({
+      faveList: []
+    })
+  }
+
 
 
   render() {
@@ -61,12 +67,12 @@ class App extends Component{
             placeholder='Country Name....'  
             value={this.state.input} 
             onChange={this.inputHandler}></input>
-          <button onClick={this.handleSubmitClick}>Submit</button>
+          <button onClick={this.handleSubmitClick}>Filter</button>
         </form>
         {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
           : <>
             <CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>
-            <FaveList faveList={this.state.faveList}/>
+            <FaveList faveList={this.state.faveList} clearFaves={this.clearFaves}/>
           </>}
         
       </>
