@@ -1,5 +1,9 @@
 import React from "react"
 
-const FaveCountry = (props) => <h5>Country:{props.faveCountry}</h5>
+const FaveCountry = (props) => {
+  return (   
+    <h5>Country:</h5>
+  )
+}
 
 export default FaveCountry

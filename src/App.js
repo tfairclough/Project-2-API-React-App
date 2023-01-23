@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import CountryList from './CountryList';
 import FaveList from './FaveList';
-import axios
+import axios from 'axios';
 
 class App extends Component{
   constructor(props) {
     super(props)
     this.state ={
       input: '',
-      allCountries: ['A','B', 'C'],
+      allCountries: '',
       faveList: ['A']
     }
   }
 
   componentDidMount = () => {
     const countryURL = 'https://restcountries.com/v3.1/all'
-    axios.get(countryURL).then(response => (this.setState({allCountries: response.data})))
+    // axios.get(countryURL).then(response => (this.setState({allCountries: response.data})))
   }
 
   inputHandler = (e) => {
@@ -36,7 +36,7 @@ class App extends Component{
   render() {
     return (
       <>
-        <h1>Countries Dictionary</h1>
+      <h1>Countries Dictionary</h1>
         <form> 
           <input 
             type='text' 
@@ -45,8 +45,12 @@ class App extends Component{
             onChange={this.inputHandler}></input>
           <button onClick={this.handleSubmitClick}>Submit</button>
         </form>
-        <CountryList allCountries={this.state.allCountries}/>
-        <FaveList faveList={this.state.faveList}/>
+        {this.state.allCountries === '' ? <h1>Fetching.....</h1> 
+          : <>
+            <CountryList allCountries={this.state.allCountries}/>
+            <FaveList faveList={this.state.faveList}/>
+          </>}
+        
       </>
     )
   }
