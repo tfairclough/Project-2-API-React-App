@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import CountryList from './CountryList';
+import FaveList from './FaveList';
+import axios
 
 class App extends Component{
   constructor(props) {
     super(props)
     this.state ={
       input: '',
-      allCountries: ['A','B', 'C']
+      allCountries: ['A','B', 'C'],
+      faveList: ['A']
     }
+  }
+
+  componentDidMount = () => {
+    const countryURL = 'https://restcountries.com/v3.1/all'
+    axios.get(countryURL).then(response => (this.setState({allCountries: response.data})))
   }
 
   inputHandler = (e) => {
@@ -37,7 +45,8 @@ class App extends Component{
             onChange={this.inputHandler}></input>
           <button onClick={this.handleSubmitClick}>Submit</button>
         </form>
-        <CountryList allCountries ={this.state.allCountries}/>
+        <CountryList allCountries={this.state.allCountries}/>
+        <FaveList faveList={this.state.faveList}/>
       </>
     )
   }
