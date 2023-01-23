@@ -5,7 +5,8 @@ class App extends Component{
   constructor(props) {
     super(props)
     this.state ={
-      input: ''
+      input: '',
+      allCountries: ['A','B', 'C']
     }
   }
 
@@ -35,7 +36,7 @@ class App extends Component{
             onChange={this.inputHandler}></input>
           <button onClick={this.handleSubmitClick}>Submit</button>
         </form>
-        <CountryList/>
+        <CountryList allCountries ={this.state.allCountries}/>
       </>
     )
   }
