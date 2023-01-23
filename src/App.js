@@ -10,7 +10,7 @@ class App extends Component{
       input: '',
       allCountries: [],
       countriesToDisplay: [],
-      faveList: ['A']
+      faveList: []
     }
   }
 
@@ -38,6 +38,17 @@ class App extends Component{
     return allNames.some(name => name.toLowerCase().includes(textValue.toLowerCase())) ? true : false
   }
 
+  faveToggle = (country) => {
+    const faves = [...this.state.faveList]
+    const countryIndex = faves.indexOf(country)
+
+    countryIndex >= 0 ? faves.splice(countryIndex,1) : faves.push(country)
+
+    this.setState({
+      faveList: faves
+    })
+  }
+
 
 
   render() {
@@ -54,7 +65,7 @@ class App extends Component{
         </form>
         {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
           : <>
-            <CountryList allCountries={this.state.countriesToDisplay}/>
+            <CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>
             <FaveList faveList={this.state.faveList}/>
           </>}
         
