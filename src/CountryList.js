@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import CountryDetails from "./CountryDetails";
+import CountryRow from "./CountryRow";
 
 export default class CountryList extends Component {
   
   render() {
-    const allCountries = this.props.allCountries.map((country, index) => <CountryDetails country={country} key={index}/>)
+    const allCountries = this.props.allCountries.map((country, index) => <CountryRow country={country} key={index}/>)
 
       return (
         <>
