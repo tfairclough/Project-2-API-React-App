@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import CountryDetails from "./CountryDetails";
 
 export default class CountryList extends Component {
     render() {
         return (
-            <h3>Country List</h3>
+            <>
+                <CountryDetails/>
+                <CountryDetails/>
+                <CountryDetails/>
+            </>
         )
     }
 }
