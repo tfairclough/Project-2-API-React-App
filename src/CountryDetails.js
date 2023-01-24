@@ -2,11 +2,10 @@ import React from "react";
 
 const CountryDetails = (props) => {
   return (
-    <>
-      <h3>Country: {props.country.name.common}</h3>
-      <p>Region: {props.country.region}</p>
+    <div>
       <img src={props.country.flags.png}/>
-    </>
+      <p>{props.country.name.common}</p>
+    </div>
   )
 }
 

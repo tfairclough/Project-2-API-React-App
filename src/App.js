@@ -28,11 +28,6 @@ class App extends Component{
       countriesToDisplay: filteredCountries
     })
   }
-
-  handleSubmitClick = (e) => {
-    e.preventDefault()
-    
-  }
   
   checkAllCountryNamesBool = (country, textValue) => {
     const allNames = [country.name.common, country.name.official, ...country.altSpellings]
@@ -70,19 +65,19 @@ class App extends Component{
           <img src={require('./earth_logo.png')} height='80px'/>
           <h1 className='page-title'>Countries Dictionary</h1>
         </header>
-
         <main>
           <div className='country-search' >
+            <h3>Search</h3>
             <form> 
-              <input 
-                type='text' 
-                placeholder='Country Name....'  
+              <div className='mag-img'></div>
+              <input className='search-input'
+                type='search' 
+                placeholder='Type Country Name....'  
                 value={this.state.input} 
                 onChange={this.inputHandler}></input>
-              <button onClick={this.handleSubmitClick}>Filter</button>
+              </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
                 :<CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>}
-            </form>
           </div>
           <div className='country-info'>
             <FaveList faveList={this.state.faveList} 

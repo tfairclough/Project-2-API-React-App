@@ -26,10 +26,8 @@ img {
 header {
   display: flex;
   padding: 0.5em;
-  margin: 0 0 0.5em 0;
   align-items: flex-end;
   border-bottom: 5px black double;
-  
 }
 
 .page-title {
@@ -49,12 +47,45 @@ main {
 }
 
 .country-search {
+  background-color: aqua;
+  padding: 0 10px;
   flex: 1 0 33%;
-  overflow-y: scroll;
 }
 
 .country-info {
   flex: 1 0 66%;
   overflow-y: scroll;
+}
+
+form {
+  display: flex;
+  border: 1px solid rgb(39, 39, 39);
+  width: 70%;
+  background: url();
+  margin: 0 5%;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
+  background-color: white;
+  border-radius: 10px;
+}
+
+.mag-img {
+  width: 25px;
+  background-image: url('./mag1.png');
+  background-size: cover;
+}
+
+.search-input {
+  border: none;
+  padding: 5px 5px;
+  flex-grow: 1;
+  border-radius: 10px;
+}
+
+.search-input:focus {
+  outline-width: 0;
+}
+
+.mag_img {
+  height:100%
 }
 
