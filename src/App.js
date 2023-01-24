@@ -10,7 +10,8 @@ class App extends Component{
       input: '',
       allCountries: [],
       countriesToDisplay: [],
-      faveList: []
+      faveList: [],
+      faveSelection:[]
     }
   }
 
@@ -55,26 +56,41 @@ class App extends Component{
     })
   }
 
+  removeSelectedFaves =() => {
+    console.log('test')
+  }
 
+  
 
   render() {
     return (
       <>
-      <h1>Countries Dictionary</h1>
-        <form> 
-          <input 
-            type='text' 
-            placeholder='Country Name....'  
-            value={this.state.input} 
-            onChange={this.inputHandler}></input>
-          <button onClick={this.handleSubmitClick}>Filter</button>
-        </form>
-        {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
-          : <>
-            <CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>
-            <FaveList faveList={this.state.faveList} clearFaves={this.clearFaves}/>
-          </>}
-        
+
+        <header>
+          <img src={require('./earth_logo.png')} height='80px'/>
+          <h1 className='page-title'>Countries Dictionary</h1>
+        </header>
+
+        <main>
+          <div className='country-search' >
+            <form> 
+              <input 
+                type='text' 
+                placeholder='Country Name....'  
+                value={this.state.input} 
+                onChange={this.inputHandler}></input>
+              <button onClick={this.handleSubmitClick}>Filter</button>
+              {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
+                :<CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>}
+            </form>
+          </div>
+          <div className='country-info'>
+            <FaveList faveList={this.state.faveList} 
+                      clearFaves={this.clearFaves} 
+                      removeSelectedFaves={this.removeSelectedFaves}
+                      />
+          </div>
+        </main>
       </>
     )
   }

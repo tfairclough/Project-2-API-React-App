@@ -9,7 +9,6 @@ export default class CountryList extends Component {
 
       return (
         <>
-          <h1>Countries</h1>
           <ul>
             {allCountries}
           </ul>
