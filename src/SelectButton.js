@@ -4,7 +4,7 @@ export default class SelectButton extends Component{
 
   handleFaveClick = (e) => {
     e.stopPropagation()
-    this.props.selectToggle()
+    this.props.starredToggle()
   }
 
   render() {

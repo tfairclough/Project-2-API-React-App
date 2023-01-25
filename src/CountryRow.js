@@ -7,7 +7,7 @@ export default class CountryRow extends Component{
     return (
       <div className='search-country-div'>
         <CountrySearchDetail country={this.props.country} />
-        <SelectButton selectToggle={this.props.selectToggle} isSelected={this.props.isSelected}/>
+        <SelectButton starredToggle={this.props.starredToggle} isStarred={this.props.isStarred}/>
       </div >        
     )
   }

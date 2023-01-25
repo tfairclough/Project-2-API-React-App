@@ -55,7 +55,6 @@ main {
 
 .country-info {
   flex: 1 0 75%;
-  overflow-y: scroll;
 }
 
 form {
@@ -90,8 +89,8 @@ form {
 .search-list  {
   margin: 25px 10% ;
   padding: 2% 4%;
-  min-height: 75%;
-  max-height: 75%;
+  min-height: 55%;
+  max-height: 55%;
   overflow-x: hidden;
   overflow-y: scroll;
   border: 8px ridge rgb(45, 164, 255)
@@ -144,9 +143,20 @@ button {
   height: 27px
 }
 
+.country-detail {
+  max-height: 100%;
+  overflow-x: hidden;
+}
+
 .country-details-list {
   margin: 25px 0;
+  height: 75%;
+  min-height: 75%;
+  max-height: 75%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
+
 
 .country-details-container {
   display: flex;
@@ -176,6 +186,12 @@ span {
 .detail-text-format {
   margin: 10px 0;
   font-style: italic;
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px
+
 }
 
 h3 {

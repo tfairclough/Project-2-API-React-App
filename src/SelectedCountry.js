@@ -4,35 +4,38 @@ const SelectedCountry = (props) => {
   return (
     <div>  
       <div className='country-details-container'>
-        <img className='flag' src={props.selectedCountry.flags.png}/>
-        <h2 className='country-title'>{props.selectedCountry.name.common}</h2>
+        <img className='flag' src={props.country.flags.png}/>
+        <h2 className='country-title'>{props.country.name.common}</h2>
+        <input className='checkbox' type='checkbox'></input>
       </div>
       <div className='country-info'>
-          <h5 className='detail-text-format'><span>Population:  </span> {props.selectedCountry.population}</h5>
+          <h5 className='detail-text-format'><span>Population:  </span> {props.country.population}</h5>
           <h5 className='detail-text-format'><span>Capital: </span>
-                          {("capital" in props.selectedCountry) ? props.selectedCountry.capital[0] : 
+                          {("capital" in props.country) ? props.country.capital[0] : 
                           ''}</h5>
-          <h5 className='detail-text-format'><span>Currencies: </span> 
-                          {("currencies" in props.selectedCountry) ? 
-                          [...Object.keys(props.selectedCountry.currencies).map(key => props.selectedCountry.currencies[key].name)].join(" / ") :
+          <h5 className='detail-text-format'><span>Subregion: </span> 
+                          {("subregion" in props.country) ? 
+                          props.country.subregion :
                           ''}</h5>
-          <h5 className='detail-text-format'><span>Languages: </span>  
-                          {("languages" in props.selectedCountry) ? 
-                          [...Object.keys(props.selectedCountry.languages).map(key => props.selectedCountry.languages[key])].join(" / ") :
+          <h5 className='detail-text-format'><span>Region: </span> 
+                          {("region" in props.country) ? 
+                          props.country.region :
                           ''}</h5>
         </div>
         <div className='country-info'>
-          <h5 className='detail-text-format'><span>Population:  </span> {props.selectedCountry.population}</h5>
-          <h5 className='detail-text-format'><span>Capital: </span>
-                          {("capital" in props.selectedCountry) ? props.selectedCountry.capital[0] : 
+          <h5 className='detail-text-format'><span>Borders: </span>
+                          {("borders" in props.country) ? props.country.borders.join(" / ") : 
+                          'Island'}</h5>
+          <h5 className='detail-text-format'><span>Drives: </span>
+                          {("car" in props.country) ? props.country.car.side : 
                           ''}</h5>
           <h5 className='detail-text-format'><span>Currencies: </span> 
-                          {("currencies" in props.selectedCountry) ? 
-                          [...Object.keys(props.selectedCountry.currencies).map(key => props.selectedCountry.currencies[key].name)].join(" / ") :
+                          {("currencies" in props.country) ? 
+                          [...Object.keys(props.country.currencies).map(key => props.country.currencies[key].name)].join(" / ") :
                           ''}</h5>
-          <h5 className='detail-text-format'><span>Languages: </span>  
-                          {("languages" in props.selectedCountry) ? 
-                          [...Object.keys(props.selectedCountry.languages).map(key => props.selectedCountry.languages[key])].join(" / ") :
+          <h5 className='detail-text-format'><span>GoogleMaps: </span>  
+                          {("maps" in props.country) ? 
+                          <a href={props.country.maps.googleMaps}>{props.country.name.common}</a> :
                           ''}</h5>
         </div>
     </div>

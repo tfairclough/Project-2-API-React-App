@@ -10,8 +10,8 @@ class App extends Component{
       input: '',
       allCountries: [],
       countriesToDisplay: [],
-      selectedList: [],
-      faveSelection:[]
+      starredList: [],
+      removalList:[]
     }
   }
 
@@ -34,20 +34,20 @@ class App extends Component{
     return allNames.some(name => name.toLowerCase().includes(textValue.toLowerCase())) ? true : false
   }
 
-  selectToggle = (country) => {
-    const selected = [...this.state.selectedList]
+  starredToggle = (country) => {
+    const selected = [...this.state.starredList]
     const countryIndex = selected.indexOf(country)
 
     countryIndex >= 0 ? selected.splice(countryIndex,1) : selected.push(country)
 
     this.setState({
-      selectedList: selected
+      starredList: selected
     })
   }
 
   clearSelected = () => {
     this.setState({
-      selectedList: []
+      starredList: []
     })
   }
 
@@ -78,11 +78,11 @@ class App extends Component{
               </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
                 :<CountryList allCountries={this.state.countriesToDisplay.slice(0, 10)} 
-                              selectedList={this.state.selectedList} 
-                              selectToggle={this.selectToggle}/>}
+                              starredList={this.state.starredList} 
+                              starredToggle={this.starredToggle}/>}
           </div>
           <div className='country-info'>
-            <SelectedList selectedList={this.state.selectedList} 
+            <SelectedList starredList={this.state.starredList} 
                       clearSelected={this.clearSelected} 
                       removeSelectedFaves={this.removeSelectedFaves}
                       />

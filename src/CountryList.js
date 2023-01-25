@@ -6,9 +6,9 @@ export default class CountryList extends Component {
   render() {
     const allCountries = this.props.allCountries.map(
       (country, index) => <CountryRow country={country} 
-                                      isSelected={this.props.selectedList.includes(country)} 
+                                      isStarred={this.props.starredList.includes(country)} 
                                       key={index} 
-                                      selectToggle={() => this.props.selectToggle(country)}/>)
+                                      starredToggle={() => this.props.starredToggle(country)}/>)
 
       return (
         <>
