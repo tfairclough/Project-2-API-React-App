@@ -14,6 +14,11 @@ const AddNewCountryPopUp = (props) => {
                     value={props.newCountry.pop} 
                     className="text"
                     onChange={props.handleNewCountryInput}></input></label>
+        <label>Capital: <input type="text" 
+                    name='capital' 
+                    value={props.newCountry.capital} 
+                    className="text"
+                    onChange={props.handleNewCountryInput}></input></label>
         <label>Subregion: <input type="text" 
                     name= 'subregion' 
                     value={props.newCountry.subregion} 
@@ -22,11 +27,6 @@ const AddNewCountryPopUp = (props) => {
         <label>Region: <input type="text" 
                     name='region' 
                     value={props.newCountry.region} 
-                    className="text"
-                    onChange={props.handleNewCountryInput}></input></label>
-        <label>Capital: <input type="text" 
-                    name='capital' 
-                    value={props.newCountry.capital} 
                     className="text"
                     onChange={props.handleNewCountryInput}></input></label>
       </div>
@@ -42,6 +42,11 @@ const AddNewCountryPopUp = (props) => {
                     value={props.newCountry.borders}  
                     className="text"
                     onChange={props.handleNewCountryInput}></input></label>
+        <label>Drives: <input type="text" 
+                    name='drives' 
+                    value={props.newCountry.drives} 
+                    className="text"
+                    onChange={props.handleNewCountryInput}></input></label>
         <label>Currencies: <input type="text" 
                     name='currency' 
                     value={props.newCountry.currency} 
@@ -49,7 +54,7 @@ const AddNewCountryPopUp = (props) => {
                     onChange={props.handleNewCountryInput}></input></label>
         <label>GoogleMap Link: <input type="text" 
                     name='maplink' 
-                    value={props.newCountry.maplink} 
+                    value={props.newCountry.mapLink} 
                     className="text"
                     onChange={props.handleNewCountryInput}></input></label>
       </div>

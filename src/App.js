@@ -18,11 +18,12 @@ class App extends Component{
       capital: '',
       pop: '',
       subregion: '',
+      drives: '',
       region: '',
       fileName: '',
+      mapLink: '',
       borders: '',
       currency: '',
-      maplink: ''
       }
     }
 
@@ -64,23 +65,24 @@ class App extends Component{
 
   }
 
-  addNewCountry = (e) => {
+  toggleInputInterface = (e) => {
     this.updateState('inputVisibility', true)
   }
 
-  addNewCountrySubmit = (e) => {
-    this.toggleInputFieldOff();
+  addNewCountrySubmit = () => {
     const newCountry = {
       name: {common: this.state.name},
       population: this.state.pop,
       subregion: this.state.subregion,
       capital: [this.state.capital],
       region: this.state.region,
-      maps:{googleMaps: this.state.maplink},
+      maps: {googleMaps: this.state.mapLink},
       borders: [this.state.borders],
-      currencies: {currency: this.state.currency},
+      car: {side: this.state.drives},
+      currencies: {currency: {name: this.state.currency}},
       flags: {png: URL.createObjectURL(this.state.file)}
     }
+    this.toggleInputFieldOff();
     this.state.starredList.push(newCountry)
     this.clearNewCountryState(newCountry)
   }
@@ -99,11 +101,34 @@ class App extends Component{
 
 
   toggleInputFieldOff = () => {
-    this.updateState('inputVisibility', false);
+    this.updateState('inputVisibility', false)
+    this.clearNewCountryState()
   }
 
   editCountryDetails = (country) => {
-    console.log('test')
+    this.populateStateWithCountryData(country)
+  }
+
+  populateStateWithCountryData(country) {
+    this.setState({
+      name: country.name.common,
+      capital: country.capital,
+      pop: country.population,
+      subregion: country.subregion,
+      region: country.region,
+      fileName: '',
+      drives: country.car.side,
+      borders: ("borders" in country) ? country.borders.join(" / ") : 'Island',
+      currency: ("currencies" in country) ? [...Object.keys(country.currencies).map(key => country.currencies[key].name)].join(" / "): '',
+      mapLink: country.maps.googleMaps
+    })
+    console.log(this.state.mapLink)
+    this.toggleInputInterface()
+    this.updateExistingCountryDeatils(country) 
+  }
+
+  updateExistingCountryDeatils() {
+
   }
 
   toggleMethod(country, list, state) {
@@ -119,16 +144,15 @@ class App extends Component{
     });
   }
 
-  clearNewCountryState(newCountry) {
-    [...Object.keys(newCountry)].forEach((key) => this.updateState(key, ''))
-    this.setState({
-      fileName: ''
-    })
+  clearNewCountryState() {
+    const resetStates = ['name', 'capital', 'pop', 'subregion', 'drives', 'region', 'fileName', 'borders', 'currency', 'mapLink', 'fileName']
+    resetStates.forEach(state => this.updateState(state, ''))
   }
   
   render() {
 
     const inputVisibility = this.state.inputVisibility ? "visibile" : "invisible";
+    console.log(this.state.mapLink)
     const newCountry ={
         name: this.state.name,
         capital: this.state.capital,
@@ -138,7 +162,8 @@ class App extends Component{
         fileName: this.state.fileName,
         borders: this.state.borders,
         currency: this.state.currency,
-        maplink: this.state.maplink
+        mapLink: this.state.mapLink,
+        drives: this.state.drives
       }
     
     return (
@@ -170,7 +195,7 @@ class App extends Component{
                       clearAll={this.clearAll} 
                       clearSelected={this.clearSelected}
                       selectedToggle={this.selectedToggle}
-                      addNewCountry={this.addNewCountry}
+                      addNewCountry={this.toggleInputInterface}
                       editCountryDetails={this.editCountryDetails}
                       />
           </div>

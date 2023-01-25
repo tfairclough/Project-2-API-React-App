@@ -35,7 +35,7 @@ const StarredCountry = (props) => {
                           [...Object.keys(props.country.currencies).map(key => props.country.currencies[key].name)].join(" / ") :
                           ''}</h5>
           <h5 className='detail-text-format'><span>Maps: </span>  
-                          {("maps" in props.country & props.country.maps.googleMaps!== '') ? 
+                          {("maps" in props.country) ? 
                           <a href={props.country.maps.googleMaps} target="_blank">{props.country.name.common} </a> :
                           ''}</h5>
         </div>
