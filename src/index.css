@@ -146,7 +146,6 @@ button {
 
 .country-details-list {
   margin: 25px 0;
-
 }
 
 .country-details-container {
@@ -161,9 +160,22 @@ button {
 
 .country-title {
   margin: 0;
-  display: inline;
   font-size: 24px;
   padding: 0 1%;
+}
+
+.country-info {
+  display: inline-block;
+  width: 50%
+}
+
+span {
+  font-style: normal;
+}
+
+.detail-text-format {
+  margin: 10px 0;
+  font-style: italic;
 }
 
 h3 {

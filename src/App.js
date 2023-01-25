@@ -77,7 +77,7 @@ class App extends Component{
                 onChange={this.inputHandler}></input>
               </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
-                :<CountryList allCountries={this.state.countriesToDisplay} 
+                :<CountryList allCountries={this.state.countriesToDisplay.slice(0, 10)} 
                               selectedList={this.state.selectedList} 
                               selectToggle={this.selectToggle}/>}
           </div>
