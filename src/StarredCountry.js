@@ -6,6 +6,7 @@ const StarredCountry = (props) => {
       <div className='country-details-container'>
         <img className='flag' src={props.country.flags.png}/>
         <h2 className='country-title'>{props.country.name.common}</h2>
+        <img className='pencil-icon' src={require('./pencil_icon.png')} onClick={props.editCountryDetails}/>
         <input onClick={props.selectedToggle} className='checkbox' type='checkbox'></input>
       </div>
       <div className='country-info'>
@@ -29,13 +30,13 @@ const StarredCountry = (props) => {
           <h5 className='detail-text-format'><span>Drives: </span>
                           {("car" in props.country) ? props.country.car.side : 
                           ''}</h5>
-          <h5 className='detail-text-format'><span>Currencies: </span> 
+          <h5 className='detail-text-format'><span>Coin: </span> 
                           {("currencies" in props.country) ? 
                           [...Object.keys(props.country.currencies).map(key => props.country.currencies[key].name)].join(" / ") :
                           ''}</h5>
-          <h5 className='detail-text-format'><span>GoogleMaps: </span>  
-                          {("maps" in props.country) ? 
-                          <a href={props.country.maps.googleMaps}>{props.country.name.common}</a> :
+          <h5 className='detail-text-format'><span>Maps: </span>  
+                          {("maps" in props.country & props.country.maps.googleMaps!== '') ? 
+                          <a href={props.country.maps.googleMaps} target="_blank">{props.country.name.common} </a> :
                           ''}</h5>
         </div>
     </div>

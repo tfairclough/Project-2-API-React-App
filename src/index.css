@@ -160,8 +160,9 @@ button {
 
 
 .country-details-container {
+  position: relative;
   display: flex;
-  align-items: baseline
+  align-items: baseline;
 }
 
 .flag {
@@ -190,9 +191,11 @@ span {
 }
 
 .checkbox {
+  position: absolute;
+  top:0;
+  left: -30px; 
   height: 20px;
-  width: 20px
-
+  width: 20px;
 }
 
 h3 {
@@ -240,7 +243,7 @@ fieldset {
 .pop-out-header {
   display: inline-block;
   font-weight: 800;
-  font-size: larger;
+  font-size: x-large;
   margin: 0;
   width: 100%
 }
@@ -260,4 +263,13 @@ label {
 
 .invisible {
   visibility: hidden;
+}
+
+.pencil-icon {
+  padding: 15px 0;
+  height: 15px;
+}
+
+.pencil-icon:hover {
+  transform: scale(1.4);
 }

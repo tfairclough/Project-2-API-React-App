@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CountryList from './CountryList';
 import StarredList from './StarredList';
 import axios, { all } from 'axios';
+import AddNewCountryPopUp from './AddNewCountryPopUp';
 
 class App extends Component{
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends Component{
       inputVisibility: false,
       name: '',
       capital: '',
-      pop: 0,
+      pop: '',
       subregion: '',
       region: '',
       fileName: '',
@@ -68,7 +69,7 @@ class App extends Component{
   }
 
   addNewCountrySubmit = (e) => {
-    this.updateState('inputVisibility', false)
+    this.toggleInputFieldOff();
     const newCountry = {
       name: {common: this.state.name},
       population: this.state.pop,
@@ -80,8 +81,8 @@ class App extends Component{
       currencies: {currency: this.state.currency},
       flags: {png: URL.createObjectURL(this.state.file)}
     }
-    console.log(newCountry)
     this.state.starredList.push(newCountry)
+    this.clearNewCountryState(newCountry)
   }
 
   clearAll = () => {
@@ -97,6 +98,14 @@ class App extends Component{
   }
 
 
+  toggleInputFieldOff = () => {
+    this.updateState('inputVisibility', false);
+  }
+
+  editCountryDetails = (country) => {
+    console.log('test')
+  }
+
   toggleMethod(country, list, state) {
     const currentList = [...list];
     const countryIndex = currentList.indexOf(country);
@@ -110,10 +119,27 @@ class App extends Component{
     });
   }
 
+  clearNewCountryState(newCountry) {
+    [...Object.keys(newCountry)].forEach((key) => this.updateState(key, ''))
+    this.setState({
+      fileName: ''
+    })
+  }
   
   render() {
 
     const inputVisibility = this.state.inputVisibility ? "visibile" : "invisible";
+    const newCountry ={
+        name: this.state.name,
+        capital: this.state.capital,
+        pop: this.state.pop,
+        subregion: this.state.subregion,
+        region: this.state.region,
+        fileName: this.state.fileName,
+        borders: this.state.borders,
+        currency: this.state.currency,
+        maplink: this.state.maplink
+      }
     
     return (
       <>
@@ -134,7 +160,7 @@ class App extends Component{
                 onChange={this.inputHandler}></input>
               </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
-                :<CountryList allCountries={this.state.countriesToDisplay.slice(0, 10)} 
+                :<CountryList allCountries={this.state.countriesToDisplay} 
                               starredList={this.state.starredList} 
                               starredToggle={this.starredToggle}/>
                               }
@@ -145,64 +171,15 @@ class App extends Component{
                       clearSelected={this.clearSelected}
                       selectedToggle={this.selectedToggle}
                       addNewCountry={this.addNewCountry}
+                      editCountryDetails={this.editCountryDetails}
                       />
           </div>
         </main>
-        <div className={"pop-out-input " + inputVisibility}>
-            <fieldset>
-              
-              <div className='pop-out-fields'>
-                <label><p className='pop-out-header'>New Country:</p> <input type="text" 
-                            name='name' 
-                            value={this.state.name} 
-                            className="text name"
-                            onChange={this.handleNewCountryInput}></input></label>
-                <label>Population: <input type="number" 
-                            name='pop' 
-                            value={this.state.pop} 
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-                <label>Subregion: <input type="text" 
-                            name= 'subregion' 
-                            value={this.state.subregion} 
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-                <label>Region: <input type="text" 
-                            name='region' 
-                            value={this.state.region} 
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-                <label>Capital: <input type="text" 
-                            name='capital' 
-                            value={this.state.capital} 
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-              </div>
-              <div className='pop-out-fields'>
-                <label>Upload Flag: <input type="file" 
-                            name='fileName' 
-                            value={this.state.fileName} 
-                            className="text"
-                            onChange={this.handleFileUpload}></input> </label>
-                <label>Borders: <input type="text" 
-                            name='borders' 
-                            value={this.state.borders}  
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-                <label>Currencies: <input type="text" 
-                            name='currency' 
-                            value={this.state.currency} 
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-                <label>GoogleMap Link: <input type="text" 
-                            name='maplink' 
-                            value={this.state.maplink} 
-                            className="text"
-                            onChange={this.handleNewCountryInput}></input></label>
-              </div>
-            </fieldset>
-          <button onClick={this.addNewCountrySubmit}>Add New Country</button>
-        </div>
+        {this.state.inputVisibility && <AddNewCountryPopUp  newCountry={newCountry}
+                                                            handleNewCountryInput={this.handleNewCountryInput}                                                            
+                                                            addNewCountrySubmit={this.addNewCountrySubmit}
+                                                            handleFileUpload={this.handleFileUpload}
+                                                            toggleInputFieldOff={this.toggleInputFieldOff}/>}
         <footer>
           Designed by Tom Fairclough
         </footer>

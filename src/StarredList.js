@@ -6,7 +6,8 @@ export default class StarredList extends Component {
     const selectedList = this.props.starredList.map((country, index) => <StarredCountry 
                                                                                 country={country} 
                                                                                 key={country.name.common}
-                                                                                selectedToggle={(e) => this.props.selectedToggle(country)}/>)
+                                                                                selectedToggle={(e) => this.props.selectedToggle(country)}
+                                                                                editCountryDetails={(e) => this.props.editCountryDetails(country)}/>)
     return (
       <div className='country-detail'>
         <h3>Explore the Countries....</h3>
