@@ -241,13 +241,17 @@ fieldset {
   display: inline-block;
   font-weight: 800;
   font-size: larger;
-  margin: 10px 0 20px 0;
+  margin: 0;
   width: 100%
 }
 
 label {
   font-size: medium;
   font-weight: 500;
+}
+
+.name {
+  width: 100%
 }
 
 .visible {

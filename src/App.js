@@ -2,25 +2,28 @@ import React, { Component } from 'react'
 import CountryList from './CountryList';
 import StarredList from './StarredList';
 import axios, { all } from 'axios';
-import { useState } from 'react';
 
 class App extends Component{
   constructor(props) {
     super(props)
     this.state ={
-      input: '',
+      searchInput: '',
       allCountries: [],
       countriesToDisplay: [],
       starredList: [],
       removalList:[],
       inputVisibility: false,
-      addNewCountry: {}
+      name: '',
+      capital: '',
+      pop: 0,
+      subregion: '',
+      region: '',
+      fileName: '',
+      borders: '',
+      currency: '',
+      maplink: ''
+      }
     }
-    const [state, setState] = React.useState({
-      firstName: "",
-      lastName: ""
-    })
-  }
 
 
   componentDidMount = () => {
@@ -32,11 +35,19 @@ class App extends Component{
     const textValue = e.target.value
     const filteredCountries = this.state.allCountries.filter((country) => this.checkAllCountryNamesBool(country, textValue))
     this.setState({
-      input: textValue,
+      searchInput: textValue,
       countriesToDisplay: filteredCountries
     })
   }
   
+  handleNewCountryInput = (e) => {
+    this.updateState(e.target.name, e.target.value)
+  }
+  handleFileUpload = (e) => {
+    this.updateState(e.target.name, e.target.value)
+    this.updateState('file', e.target.files[0])
+  }
+
   checkAllCountryNamesBool = (country, textValue) => {
     const allNames = [country.name.common, country.name.official, ...country.altSpellings]
     return allNames.some(name => name.toLowerCase().includes(textValue.toLowerCase())) ? true : false
@@ -53,23 +64,36 @@ class App extends Component{
   }
 
   addNewCountry = (e) => {
-    this.updateStateList('inputVisibility', true)
+    this.updateState('inputVisibility', true)
   }
 
   addNewCountrySubmit = (e) => {
-    this.updateStateList('inputVisibility', false)
+    this.updateState('inputVisibility', false)
+    const newCountry = {
+      name: {common: this.state.name},
+      population: this.state.pop,
+      subregion: this.state.subregion,
+      capital: [this.state.capital],
+      region: this.state.region,
+      maps:{googleMaps: this.state.maplink},
+      borders: [this.state.borders],
+      currencies: {currency: this.state.currency},
+      flags: {png: URL.createObjectURL(this.state.file)}
+    }
+    console.log(newCountry)
+    this.state.starredList.push(newCountry)
   }
 
   clearAll = () => {
-    this.updateStateList('starredList', [])
-    this.updateStateList('removalList', [])
+    this.updateState('starredList', [])
+    this.updateState('removalList', [])
   }
 
   clearSelected = (e) => {
     e.stopPropagation();
     const remainingCountries = this.state.starredList.filter( country => !this.state.removalList.includes(country))
-    this.updateStateList('removalList', [])
-    this.updateStateList('starredList', remainingCountries)
+    this.updateState('removalList', [])
+    this.updateState('starredList', remainingCountries)
   }
 
 
@@ -77,10 +101,10 @@ class App extends Component{
     const currentList = [...list];
     const countryIndex = currentList.indexOf(country);
     countryIndex >= 0 ? currentList.splice(countryIndex, 1) : currentList.push(country);
-        this.updateStateList(state, currentList);
+        this.updateState(state, currentList);
   }
 
-  updateStateList(key, selected) {
+  updateState(key, selected) {
     this.setState({
       [key]: selected
     });
@@ -106,7 +130,7 @@ class App extends Component{
               <input className='search-input'
                 type='search' 
                 placeholder='Search Country....'  
-                value={this.state.input} 
+                value={this.state.searchInput} 
                 onChange={this.inputHandler}></input>
               </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
@@ -126,18 +150,55 @@ class App extends Component{
         </main>
         <div className={"pop-out-input " + inputVisibility}>
             <fieldset>
-              <p className='pop-out-header'>New Country:</p>
+              
               <div className='pop-out-fields'>
-                <label>Name: <input type="text" name="name" id="name" className="text"></input></label>
-                <label>Population: <input type="number" name="name" id="name" className="text"></input></label>
-                <label>Subregion: <input type="text" name="name" id="name" className="text"></input></label>
-                <label>Region: <input type="text" name="name" id="name" className="text"></input></label>
+                <label><p className='pop-out-header'>New Country:</p> <input type="text" 
+                            name='name' 
+                            value={this.state.name} 
+                            className="text name"
+                            onChange={this.handleNewCountryInput}></input></label>
+                <label>Population: <input type="number" 
+                            name='pop' 
+                            value={this.state.pop} 
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
+                <label>Subregion: <input type="text" 
+                            name= 'subregion' 
+                            value={this.state.subregion} 
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
+                <label>Region: <input type="text" 
+                            name='region' 
+                            value={this.state.region} 
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
+                <label>Capital: <input type="text" 
+                            name='capital' 
+                            value={this.state.capital} 
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
               </div>
               <div className='pop-out-fields'>
-                <label>Upload Flag: <input type="file" className="text" name="filename"></input> </label>
-                <label>Borders: <input type="text" name="name" id="name" className="text"></input></label>
-                <label>Currencies: <input type="text" name="name" id="name" className="text"></input></label>
-                <label>GoogleMap Link: <input type="text" name="name" id="name" className="text"></input></label>
+                <label>Upload Flag: <input type="file" 
+                            name='fileName' 
+                            value={this.state.fileName} 
+                            className="text"
+                            onChange={this.handleFileUpload}></input> </label>
+                <label>Borders: <input type="text" 
+                            name='borders' 
+                            value={this.state.borders}  
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
+                <label>Currencies: <input type="text" 
+                            name='currency' 
+                            value={this.state.currency} 
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
+                <label>GoogleMap Link: <input type="text" 
+                            name='maplink' 
+                            value={this.state.maplink} 
+                            className="text"
+                            onChange={this.handleNewCountryInput}></input></label>
               </div>
             </fieldset>
           <button onClick={this.addNewCountrySubmit}>Add New Country</button>
