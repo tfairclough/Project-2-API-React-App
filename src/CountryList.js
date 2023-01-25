@@ -7,7 +7,7 @@ export default class CountryList extends Component {
     const allCountries = this.props.allCountries.map(
       (country, index) => <CountryRow country={country} 
                                       isStarred={this.props.starredList.includes(country)} 
-                                      key={index} 
+                                      key={country.name.common} 
                                       starredToggle={() => this.props.starredToggle(country)}/>)
 
       return (

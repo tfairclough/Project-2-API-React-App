@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CountryList from './CountryList';
-import SelectedList from './SelectedList';
+import StarredList from './StarredList';
 import axios, { all } from 'axios';
 
 class App extends Component{
@@ -35,24 +35,38 @@ class App extends Component{
   }
 
   starredToggle = (country) => {
-    const selected = [...this.state.starredList]
-    const countryIndex = selected.indexOf(country)
-
-    countryIndex >= 0 ? selected.splice(countryIndex,1) : selected.push(country)
-
-    this.setState({
-      starredList: selected
-    })
+    this.toggleMethod(country, this.state.starredList, 'starredList')
   }
 
-  clearSelected = () => {
-    this.setState({
-      starredList: []
-    })
+
+  selectedToggle = (country) => {
+    this.toggleMethod(country, this.state.removalList, 'removalList');
+
   }
 
-  removeSelectedFaves =() => {
-    console.log('test')
+  clearAll = () => {
+    this.updateStateList('starredList', [])
+  }
+
+  clearSelected = (e) => {
+    e.stopPropagation();
+    const remainingCountries = this.state.starredList.filter( country => !this.state.removalList.includes(country))
+    this.updateStateList('removalList', [])
+    this.updateStateList('starredList', remainingCountries)
+  }
+
+
+  toggleMethod(country, list, state) {
+    const currentList = [...list];
+    const countryIndex = currentList.indexOf(country);
+    countryIndex >= 0 ? currentList.splice(countryIndex, 1) : currentList.push(country);
+        this.updateStateList(state, currentList);
+  }
+
+  updateStateList(key, selected) {
+    this.setState({
+      [key]: selected
+    });
   }
 
   
@@ -79,12 +93,14 @@ class App extends Component{
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
                 :<CountryList allCountries={this.state.countriesToDisplay.slice(0, 10)} 
                               starredList={this.state.starredList} 
-                              starredToggle={this.starredToggle}/>}
+                              starredToggle={this.starredToggle}/>
+                              }
           </div>
           <div className='country-info'>
-            <SelectedList starredList={this.state.starredList} 
-                      clearSelected={this.clearSelected} 
-                      removeSelectedFaves={this.removeSelectedFaves}
+            <StarredList starredList={this.state.starredList} 
+                      clearAll={this.clearAll} 
+                      clearSelected={this.clearSelected}
+                      selectedToggle={this.selectedToggle}
                       />
           </div>
         </main>

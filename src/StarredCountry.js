@@ -1,12 +1,12 @@
 import React from "react"
 
-const SelectedCountry = (props) => {
+const StarredCountry = (props) => {
   return (
     <div>  
       <div className='country-details-container'>
         <img className='flag' src={props.country.flags.png}/>
         <h2 className='country-title'>{props.country.name.common}</h2>
-        <input className='checkbox' type='checkbox'></input>
+        <input onClick={props.selectedToggle} className='checkbox' type='checkbox'></input>
       </div>
       <div className='country-info'>
           <h5 className='detail-text-format'><span>Population:  </span> {props.country.population}</h5>
@@ -42,4 +42,4 @@ const SelectedCountry = (props) => {
   )
 }
 
-export default SelectedCountry
+export default StarredCountry
