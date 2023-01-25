@@ -5,7 +5,10 @@ export default class CountryList extends Component {
   
   render() {
     const allCountries = this.props.allCountries.map(
-      (country, index) => <CountryRow country={country} key={index} faveToggle={this.props.faveToggle}/>)
+      (country, index) => <CountryRow country={country} 
+                                      isSelected={this.props.selectedList.includes(country)} 
+                                      key={index} 
+                                      selectToggle={() => this.props.selectToggle(country)}/>)
 
       return (
         <>

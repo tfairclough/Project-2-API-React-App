@@ -102,7 +102,7 @@ ul {
   position: relative;
   text-align: center;
   position: relative;
-  margin: 10% 2%;
+  margin: 10% 5% 20%;
 }
 
 .country-search-name {
@@ -114,37 +114,31 @@ ul {
 .fave-button {
   position: absolute;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.1);
-  background-image: url('./goldstar_empty.png');
+  background-color: rgba(0, 0, 0, 0.75);
   background-size: cover;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   right: 0;
   top: 0;
   transition: 0.3s
 }
 
-.fav-button{
-  position: absolute;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.1);
-  background-image: url('./goldstar_empty.png');
-  background-size: cover;
-  height: 40px;
-  width: 40px;
-  right: 0;
-  top: 0;
-  transition: 0.3s
-}
-
-.fave-button :hover {
+.fave-button:hover {
   transform-origin: top right;
-  transform: scale(1.2)
+  transform: scale(1.1)
 
+}
+
+.selected {
+  background-image: url('./goldstar_filled.png');
+}
+
+.not-selected {
+  background-image: url('./goldstar_empty.png');
 }
 
 .search-flag {
-  height: 80%;
+  max-height: 120px
 }
 
 footer {

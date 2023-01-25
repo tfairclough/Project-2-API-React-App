@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CountryList from './CountryList';
-import FaveList from './FaveList';
+import SelectedList from './SelectedList';
 import axios, { all } from 'axios';
 
 class App extends Component{
@@ -34,20 +34,20 @@ class App extends Component{
     return allNames.some(name => name.toLowerCase().includes(textValue.toLowerCase())) ? true : false
   }
 
-  faveToggle = (country) => {
-    const faves = [...this.state.selectedList]
-    const countryIndex = faves.indexOf(country)
+  selectToggle = (country) => {
+    const selected = [...this.state.selectedList]
+    const countryIndex = selected.indexOf(country)
 
-    countryIndex >= 0 ? faves.splice(countryIndex,1) : faves.push(country)
+    countryIndex >= 0 ? selected.splice(countryIndex,1) : selected.push(country)
 
     this.setState({
-      faveList: faves
+      selectedList: selected
     })
   }
 
-  clearFaves = () => {
+  clearSelected = () => {
     this.setState({
-      faveList: []
+      selectedList: []
     })
   }
 
@@ -77,11 +77,13 @@ class App extends Component{
                 onChange={this.inputHandler}></input>
               </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
-                :<CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>}
+                :<CountryList allCountries={this.state.countriesToDisplay} 
+                              selectedList={this.state.selectedList} 
+                              selectToggle={this.selectToggle}/>}
           </div>
           <div className='country-info'>
-            <FaveList selectedList={this.state.selectedList} 
-                      clearFaves={this.clearFaves} 
+            <SelectedList selectedList={this.state.selectedList} 
+                      clearSelected={this.clearSelected} 
                       removeSelectedFaves={this.removeSelectedFaves}
                       />
           </div>

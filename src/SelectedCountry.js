@@ -1,9 +1,9 @@
 import React from "react"
 
-const FaveCountry = (props) => {
+const SelectedCountry = (props) => {
   return (   
     <h5>Country: {props.selectedCountry.name.common}</h5>
   )
 }
 
-export default FaveCountry
+export default SelectedCountry
