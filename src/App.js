@@ -72,7 +72,7 @@ class App extends Component{
               <div className='mag-img'></div>
               <input className='search-input'
                 type='search' 
-                placeholder='Type Country Name....'  
+                placeholder='Search Country....'  
                 value={this.state.input} 
                 onChange={this.inputHandler}></input>
               </form>
@@ -86,6 +86,9 @@ class App extends Component{
                       />
           </div>
         </main>
+        <footer>
+          Designed by Tom Fairclough
+        </footer>
       </>
     )
   }

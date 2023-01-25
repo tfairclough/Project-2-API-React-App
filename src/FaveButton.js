@@ -9,9 +9,7 @@ export default class FaveButton extends Component{
 
   render() {
     return (
-      <div onClick={this.handleFaveClick}> 
-        <p>FaveClickMe</p>
-      </div>
+      <div className='fave-button-off' onClick={this.handleFaveClick}></div>
     )
   }
 }

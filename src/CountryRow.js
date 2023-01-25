@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import CountryDetails from "./CountryDetails";
+import CountrySearchDetail from "./CountrySearchDetails";
 import FaveButton from "./FaveButton";
 
 export default class CountryRow extends Component{
   render() {
     return (
-      <>
-        <CountryDetails country={this.props.country}/>
+      <div className='reduced-detail-country-div'>
+        <CountrySearchDetail country={this.props.country}/>
         <FaveButton faveToggle={() => this.props.faveToggle(this.props.country)}/>
-      </>        
+      </div >        
     )
   }
 }

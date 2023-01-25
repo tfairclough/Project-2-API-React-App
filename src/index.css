@@ -21,13 +21,14 @@ body,
 
 img {
   max-height: 100%;
+  max-width: 100%;
 }
 
 header {
   display: flex;
   padding: 0.5em;
   align-items: flex-end;
-  border-bottom: 5px black double;
+  border-bottom: 5px rgb(45, 164, 255) double;
 }
 
 .page-title {
@@ -41,26 +42,27 @@ header {
 main { 
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 80%;
   align-items: stretch;
   justify-content: space-around;
 }
 
 .country-search {
-  background-color: aqua;
-  padding: 0 10px;
-  flex: 1 0 33%;
+  flex: 1 0 25%;
+  min-width: 175px;
+  max-width: 300px;
 }
 
 .country-info {
-  flex: 1 0 66%;
+  flex: 1 0 75%;
   overflow-y: scroll;
 }
 
 form {
   display: flex;
   border: 1px solid rgb(39, 39, 39);
-  width: 70%;
+  flex-grow: 80%;
+  max-width: 300px;
   background: url();
   margin: 0 5%;
   box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
@@ -76,16 +78,78 @@ form {
 
 .search-input {
   border: none;
-  padding: 5px 5px;
-  flex-grow: 1;
+  width: 80%;
+  padding: 5px 5px 5px 0;
   border-radius: 10px;
+  min-width: none;
 }
 
 .search-input:focus {
   outline-width: 0;
 }
 
-.mag_img {
-  height:100%
+ul {
+  margin: 10%;
+  padding: 2% 4%;
+  min-height: 75%;
+  max-height: 75%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: 10px ridge rgb(45, 164, 255)
 }
 
+.reduced-detail-country-div {
+  position: relative;
+  text-align: center;
+  position: relative;
+  margin: 10% 2%;
+}
+
+.country-search-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: medium;
+}
+
+.fave-button {
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url('./goldstar_empty.png');
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+  right: 0;
+  top: 0;
+  transition: 0.3s
+}
+
+.fav-button{
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url('./goldstar_empty.png');
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+  right: 0;
+  top: 0;
+  transition: 0.3s
+}
+
+.fave-button :hover {
+  transform-origin: top right;
+  transform: scale(1.2)
+
+}
+
+.search-flag {
+  height: 80%;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-family: cursive;
+  font-size: 15px;
+}
