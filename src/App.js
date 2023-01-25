@@ -10,7 +10,7 @@ class App extends Component{
       input: '',
       allCountries: [],
       countriesToDisplay: [],
-      faveList: [],
+      selectedList: [],
       faveSelection:[]
     }
   }
@@ -35,7 +35,7 @@ class App extends Component{
   }
 
   faveToggle = (country) => {
-    const faves = [...this.state.faveList]
+    const faves = [...this.state.selectedList]
     const countryIndex = faves.indexOf(country)
 
     countryIndex >= 0 ? faves.splice(countryIndex,1) : faves.push(country)
@@ -80,7 +80,7 @@ class App extends Component{
                 :<CountryList allCountries={this.state.countriesToDisplay} faveToggle={this.faveToggle}/>}
           </div>
           <div className='country-info'>
-            <FaveList faveList={this.state.faveList} 
+            <FaveList selectedList={this.state.selectedList} 
                       clearFaves={this.clearFaves} 
                       removeSelectedFaves={this.removeSelectedFaves}
                       />

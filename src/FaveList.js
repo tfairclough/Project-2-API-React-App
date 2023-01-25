@@ -3,7 +3,7 @@ import FaveCountry from "./FaveCountry";
 
 export default class FaveList extends Component {
   render() {
-    const faveList = this.props.faveList.map((faveCountry, index) => <FaveCountry faveCountry={faveCountry} key={index}/>)
+    const faveList = this.props.selectedList.map((selectedCountry, index) => <FaveCountry selectedCountry={selectedCountry} key={index}/>)
     return (
       <>
         <h3>Favourite List</h3>
