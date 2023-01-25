@@ -207,3 +207,53 @@ footer {
 }
 
 
+.pop-out-input {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.605);
+}
+
+fieldset {
+  z-index: 1;
+  width: 75%;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.pop-out-fields {
+  display: inline-block;
+  width:40%;
+  padding: 0 5%;
+}
+
+.text{
+  display: block;
+  margin: 5px 0 20px 0
+}
+
+.pop-out-header {
+  display: inline-block;
+  font-weight: 800;
+  font-size: larger;
+  margin: 10px 0 20px 0;
+  width: 100%
+}
+
+label {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}

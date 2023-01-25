@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CountryList from './CountryList';
 import StarredList from './StarredList';
 import axios, { all } from 'axios';
+import { useState } from 'react';
 
 class App extends Component{
   constructor(props) {
@@ -11,9 +12,16 @@ class App extends Component{
       allCountries: [],
       countriesToDisplay: [],
       starredList: [],
-      removalList:[]
+      removalList:[],
+      inputVisibility: false,
+      addNewCountry: {}
     }
+    const [state, setState] = React.useState({
+      firstName: "",
+      lastName: ""
+    })
   }
+
 
   componentDidMount = () => {
     const countryURL = 'https://restcountries.com/v3.1/all'
@@ -44,8 +52,17 @@ class App extends Component{
 
   }
 
+  addNewCountry = (e) => {
+    this.updateStateList('inputVisibility', true)
+  }
+
+  addNewCountrySubmit = (e) => {
+    this.updateStateList('inputVisibility', false)
+  }
+
   clearAll = () => {
     this.updateStateList('starredList', [])
+    this.updateStateList('removalList', [])
   }
 
   clearSelected = (e) => {
@@ -70,8 +87,10 @@ class App extends Component{
   }
 
   
-
   render() {
+
+    const inputVisibility = this.state.inputVisibility ? "visibile" : "invisible";
+    
     return (
       <>
 
@@ -101,9 +120,28 @@ class App extends Component{
                       clearAll={this.clearAll} 
                       clearSelected={this.clearSelected}
                       selectedToggle={this.selectedToggle}
+                      addNewCountry={this.addNewCountry}
                       />
           </div>
         </main>
+        <div className={"pop-out-input " + inputVisibility}>
+            <fieldset>
+              <p className='pop-out-header'>New Country:</p>
+              <div className='pop-out-fields'>
+                <label>Name: <input type="text" name="name" id="name" className="text"></input></label>
+                <label>Population: <input type="number" name="name" id="name" className="text"></input></label>
+                <label>Subregion: <input type="text" name="name" id="name" className="text"></input></label>
+                <label>Region: <input type="text" name="name" id="name" className="text"></input></label>
+              </div>
+              <div className='pop-out-fields'>
+                <label>Upload Flag: <input type="file" className="text" name="filename"></input> </label>
+                <label>Borders: <input type="text" name="name" id="name" className="text"></input></label>
+                <label>Currencies: <input type="text" name="name" id="name" className="text"></input></label>
+                <label>GoogleMap Link: <input type="text" name="name" id="name" className="text"></input></label>
+              </div>
+            </fieldset>
+          <button onClick={this.addNewCountrySubmit}>Add New Country</button>
+        </div>
         <footer>
           Designed by Tom Fairclough
         </footer>
