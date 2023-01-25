@@ -63,7 +63,6 @@ form {
   border: 1px solid rgb(39, 39, 39);
   flex-grow: 80%;
   max-width: 300px;
-  background: url();
   margin: 0 5%;
   box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
   background-color: white;
@@ -88,21 +87,21 @@ form {
   outline-width: 0;
 }
 
-ul {
-  margin: 10%;
+.search-list  {
+  margin: 25px 10% ;
   padding: 2% 4%;
   min-height: 75%;
   max-height: 75%;
   overflow-x: hidden;
   overflow-y: scroll;
-  border: 10px ridge rgb(45, 164, 255)
+  border: 8px ridge rgb(45, 164, 255)
 }
 
-.reduced-detail-country-div {
+.search-country-div {
   position: relative;
   text-align: center;
   position: relative;
-  margin: 10% 5% 20%;
+  margin: 20px 5% 30px;
 }
 
 .country-search-name {
@@ -141,9 +140,41 @@ ul {
   max-height: 120px
 }
 
+button {
+  height: 27px
+}
+
+.country-details-list {
+  margin: 25px 0;
+
+}
+
+.country-details-container {
+  display: flex;
+  align-items: baseline
+}
+
+.flag {
+  width:90px;
+  height: 60px
+}
+
+.country-title {
+  margin: 0;
+  display: inline;
+  font-size: 24px;
+  padding: 0 1%;
+}
+
+h3 {
+  margin: 22px 10px 
+}
+
 footer {
   text-align: center;
   margin-top: 20px;
   font-family: cursive;
   font-size: 15px;
 }
+
+

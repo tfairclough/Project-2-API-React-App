@@ -5,7 +5,7 @@ import SelectButton from "./SelectButton";
 export default class CountryRow extends Component{
   render() {
     return (
-      <div className='reduced-detail-country-div'>
+      <div className='search-country-div'>
         <CountrySearchDetail country={this.props.country} />
         <SelectButton selectToggle={this.props.selectToggle} isSelected={this.props.isSelected}/>
       </div >        

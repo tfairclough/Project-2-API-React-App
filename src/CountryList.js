@@ -12,7 +12,7 @@ export default class CountryList extends Component {
 
       return (
         <>
-          <ul>
+          <ul className='search-list'>
             {allCountries}
           </ul>
         </>

@@ -5,14 +5,14 @@ export default class SelectedList extends Component {
   render() {
     const selectedList = this.props.selectedList.map((selectedCountry, index) => <SelectedCountry selectedCountry={selectedCountry} key={index}/>)
     return (
-      <>
-        <h3>Favourite List</h3>
-        <ul>
-          {selectedList}
-        </ul>
+      <div>
+        <h3>Explore the Countries....</h3>
         <button>Clear Selected</button>
         <button onClick={this.props.clearSelected}>Clear All</button>
-      </>
+        <ul className='country-details-list'>
+          {selectedList}
+        </ul>
+      </div>
     )
   }
 }
