@@ -13,7 +13,8 @@ This is my first project using React as part of the SEI GeneralAssembly Course. 
 
 ## Deployment Link
 - - - 
-UPDATETETTEE
+
+https://63d29f9f40dcc6007453d7aa--soft-frangollo-12d3ea.netlify.app/
 
 ## Technologies
 - - -
