@@ -3,6 +3,7 @@ import CountryList from './CountryList';
 import StarredList from './StarredList';
 import axios, { all } from 'axios';
 import AddNewCountryPopUp from './AddNewCountryPopUp';
+import EarthLogo from './../Images/earth_logo.png'
 
 class App extends Component{
   constructor(props) {
@@ -162,8 +163,8 @@ class App extends Component{
       region: country.region,
       fileName: '',
       drives: country.car.side,
-      borders: ("borders" in country) ? country.borders.join(" / ") : 'Island',
-      currency: ("currencies" in country) ? [...Object.keys(country.currencies).map(key => country.currencies[key].name)].join(" / "): '',
+      borders: ('borders' in country) ? country.borders.join(' / ') : 'Island',
+      currency: ('currencies' in country) ? [...Object.keys(country.currencies).map(key => country.currencies[key].name)].join(' / '): '',
       mapLink: country.maps.googleMaps,
       file: country.flags.png
     })
@@ -192,8 +193,10 @@ class App extends Component{
   }
   
   render() {
+    // Checks if the input page is visible or not
+    const inputVisibility = this.state.inputVisibility ? 'visibile' : 'invisible';
 
-    const inputVisibility = this.state.inputVisibility ? "visibile" : "invisible";
+    // Updates object to pre-populate input page
     const prepopulateInput ={
         name: this.state.name,
         capital: this.state.capital,
@@ -209,9 +212,8 @@ class App extends Component{
     
     return (
       <>
-
         <header>
-          <img src={require('./earth_logo.png')} height='80px'/>
+          <img src={EarthLogo} height='80px'/>
           <h1 className='page-title'>Countries Dictionary</h1>
         </header>
         <main>

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import StarredCountry from "./StarredCountry";
+import React, { Component } from 'react';
+import StarredCountry from './StarredCountry';
 
 export default class StarredList extends Component {
   render() {

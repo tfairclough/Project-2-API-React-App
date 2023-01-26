@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class StarButton extends Component{
 
@@ -10,7 +10,7 @@ export default class StarButton extends Component{
   render() {
     const isStarred = (this.props.isStarred) ? 'selected' : 'not-selected'
     return (
-      <div onClick={this.handleStarClick} className={"fave-button " + isStarred} ></div>
+      <div onClick={this.handleStarClick} className={'fave-button ' + isStarred} ></div>
     )
   }
 }

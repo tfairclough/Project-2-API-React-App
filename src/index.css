@@ -72,7 +72,7 @@ form {
 
 .mag-img {
   width: 25px;
-  background-image: url('./mag.png');
+  background-image: url('./Images/mag.png');
   background-size: cover;
 }
 
@@ -135,11 +135,11 @@ form {
 }
 
 .selected {
-  background-image: url('./goldstar_filled.png');
+  background-image: url('./Images/goldstar_filled.png');
 }
 
 .not-selected {
-  background-image: url('./goldstar_empty.png');
+  background-image: url('./Images/goldstar_empty.png');
 }
 
 .search-flag {

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import CountryRow from "./CountryRow";
+import React, { Component } from 'react';
+import CountryRow from './CountryRow';
 
 export default class CountryList extends Component {
   

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import CountrySearchDetail from "./CountrySearchDetails";
-import StarButton from "./StarButton";
+import React, { Component } from 'react';
+import CountrySearchDetail from './CountrySearchDetails';
+import StarButton from './StarButton';
 
 export default class CountryRow extends Component{
   render() {
