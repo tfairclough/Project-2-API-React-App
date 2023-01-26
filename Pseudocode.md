@@ -7,9 +7,9 @@
     -CountryList
       -CountryRow
         -CountryDetails
-        -Fave
-    -FavsList
-      -CountryFlag
-      -Fave
+        -FaveButton
+    -StarredList
+      - Country Header
+      - Country Details
 
-    
+   

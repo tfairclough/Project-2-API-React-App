@@ -245,7 +245,7 @@ class App extends Component{
         </main>
         {this.state.inputVisibility && <AddNewCountryPopUp  newCountry={prepopulateInput}
                                                             editMode={this.state.editMode}
-                                                            handleNewCountryInput={this.handleNewCountryInput}                                                            
+                                                            handleNewCountryInput={this.handleNewCountryInput}
                                                             addNewCountrySubmit={this.inputPageSubmitClick}
                                                             handleFileUpload={this.handleFileUpload}
                                                             toggleInputFieldOff={this.toggleInputFieldOff}/>}
