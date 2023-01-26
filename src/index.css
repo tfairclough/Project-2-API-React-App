@@ -160,7 +160,7 @@ button {
 }
 
 .country-detail {
-  max-height: 100%;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -309,4 +309,8 @@ button:hover {
 button:active {
   box-shadow: #D6D6E7 0 1px 4px inset;
   transform: translateY(1px);
+}
+
+.form-button {
+  margin: 5px 0 0 0
 }

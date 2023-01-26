@@ -53,7 +53,7 @@ class App extends Component{
   }
 
   checkAllCountryNamesBool = (country, textValue) => {
-    const allNames = [country.name.common, country.name.official, ...country.altSpellings]
+    const allNames = [country.name.common, ...country.altSpellings]
     return allNames.some(name => name.toLowerCase().includes(textValue.toLowerCase())) ? true : false
   }
 
@@ -123,6 +123,7 @@ class App extends Component{
   }
 
   editExistingCountryData(countryToUpdate) {
+    countryToUpdate.altSpellings = []
     countryToUpdate.name = {common: this.state.name};
     countryToUpdate.population = this.state.pop;
     countryToUpdate.subregion = this.state.subregion;

@@ -59,8 +59,8 @@ const AddNewCountryPopUp = (props) => {
                     onChange={props.handleNewCountryInput}></input></label>
       </div>
     </fieldset>
-  <button onClick={props.addNewCountrySubmit}>Submit Details</button>
-  <button onClick={props.toggleInputFieldOff}>Cancel</button>
+  <button className="form-button" onClick={props.addNewCountrySubmit}>Submit Details</button>
+  <button className="form-button" onClick={props.toggleInputFieldOff}>Cancel</button>
 </div>
   )
 }
