@@ -1,6 +1,6 @@
 const AddNewCountryPopUp = (props) => {
   return (
-    <div className={'pop-out-input ' + props.inputVisibility}>
+    <div className={'pop-out-input'}>
     <fieldset>
       <div className='pop-out-fields'>
         <label><p className='pop-out-header'>New Country:</p> <input type='text' 
