@@ -115,7 +115,7 @@ form {
 
 .fave-button {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   background-color: rgba(0, 0, 0, 0.75);
   background-size: cover;
   height: 35px;
@@ -219,6 +219,7 @@ span {
   left: -42px; 
   height: 20px;
   width: 20px;
+  transition: 0.1s
 }
 
 .checkbox:hover {
@@ -300,6 +301,7 @@ label {
 .pencil-icon {
   padding: 15px 0;
   height: 15px;
+  transition: 0.3s
 }
 
 .pencil-icon:hover {
