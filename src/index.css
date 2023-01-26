@@ -50,6 +50,7 @@ main {
 
 .country-search {
   flex: 1 0 33%;
+  margin: 0 0 0 1%;
   min-width: 175px;
   max-width: 300px;
 }
@@ -163,6 +164,7 @@ button {
 .country-detail {
   height: 100%;
   overflow-x: hidden;
+  margin: 0 0 0 5%
 }
 
 .country-details-list {
