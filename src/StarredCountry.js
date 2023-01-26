@@ -2,7 +2,7 @@ import React from "react"
 
 const StarredCountry = (props) => {
   return (
-    <div>  
+    <div className='country-container'>  
       <div className='country-details-container'>
         <img className='flag' src={props.country.flags.png}/>
         <h2 className='country-title'>{props.country.name.common}</h2>

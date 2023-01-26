@@ -49,13 +49,13 @@ main {
 }
 
 .country-search {
-  flex: 1 0 25%;
+  flex: 1 0 33%;
   min-width: 175px;
   max-width: 300px;
 }
 
 .country-info {
-  flex: 1 0 75%;
+  flex: 1 0 66%;
 }
 
 form {
@@ -90,11 +90,11 @@ form {
 .search-list  {
   margin: 25px 10% ;
   padding: 2% 4%;
-  min-height: 55%;
-  max-height: 55%;
+  min-height: 60%;
+  max-height: 60%;
   overflow-x: hidden;
   overflow-y: scroll;
-  box-shadow:0 0 15px 4px rgba(0,0,0,0.35);
+  box-shadow:0 0 10px 2px rgba(0,0,0,0.35);
   border: 8px ridge rgb(45, 164, 255)
 }
 
@@ -103,6 +103,7 @@ form {
   text-align: center;
   position: relative;
   margin: 20px 5% 30px;
+  box-shadow:0 0 10px 3px rgba(0,0,0,0.3);
 }
 
 .country-search-name {
@@ -152,7 +153,7 @@ button {
   background-color: #FCFCFD;
   border-radius: 4px;
   border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,rgba(45, 35, 66, 0.15) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
   box-sizing: border-box;
   color: #36395A;
   cursor: pointer;
@@ -173,6 +174,12 @@ button {
   overflow-y: scroll;
 }
 
+
+.country-container {
+  box-shadow:0 0 10px 3px rgba(0,0,0,0.1);
+  margin: 10px 10% 0 0;
+  padding: 10px;
+}
 
 .country-details-container {
   position: relative;
@@ -208,7 +215,7 @@ span {
 .checkbox {
   position: absolute;
   top:0;
-  left: -30px; 
+  left: -42px; 
   height: 20px;
   width: 20px;
 }
@@ -302,7 +309,7 @@ button:focus {
 }
 
 button:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px, rgba(45, 35, 66, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
