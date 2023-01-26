@@ -29,13 +29,14 @@ class App extends Component{
       }
     }
 
-
+  // Retrieve allcountries from the API
   componentDidMount = () => {
     const countryURL = 'https://restcountries.com/v3.1/all'
     axios.get(countryURL).then(response => (this.setState({allCountries: response.data, countriesToDisplay: response.data})))
   }
 
-  inputHandler = (e) => {
+  // Handles the search input text and filters the list accordingly
+  searchInputHandler = (e) => {
     const textValue = e.target.value
     const filteredCountries = this.state.allCountries.filter((country) => this.checkAllCountryNamesBool(country, textValue))
     this.setState({
@@ -44,37 +45,44 @@ class App extends Component{
     })
   }
   
+  // Handles the new page input feilds 
   handleNewCountryInput = (e) => {
     this.updateState(e.target.name, e.target.value)
   }
+
+  // Handles the file upload retrieve
   handleFileUpload = (e) => {
     this.updateState(e.target.name, e.target.value)
     this.updateState('file', e.target.files[0])
   }
 
+  // Check search input matches country name or alternative spellings  
   checkAllCountryNamesBool = (country, textValue) => {
     const allNames = [country.name.common, ...country.altSpellings]
     return allNames.some(name => name.toLowerCase().includes(textValue.toLowerCase())) ? true : false
   }
 
-  starredToggle = (country) => {
-    this.toggleMethod(country, this.state.starredList, 'starredList')
+  // Handles the Star Button click
+  starredToggleClick = (country) => {
+    this.toggleObJFromSpecifiedStateList(country, this.state.starredList, 'starredList')
   }
 
-
-  selectedToggle = (country) => {
-    this.toggleMethod(country, this.state.removalList, 'removalList');
+  // Handles the CheckBox click
+  selectedToggleClick = (country) => {
+    this.toggleObJFromSpecifiedStateList(country, this.state.removalList, 'removalList');
 
   }
 
-  addNewCountry = (e) => {
+  // Handles the addNewCountry button click toglling the input page
+  addNewCountryClick = (e) => {
     this.setState({
       editMode: false
     })
     this.toggleInputScreenOn();
   }
 
-  addNewCountrySubmit = () => {
+  // Generates a new country or updates and exisitng country on Submit
+  inputPageSubmitClick = () => {
     if (!this.state.editMode) {
       const newCountry = {
         name: {common: this.state.name},
@@ -99,31 +107,33 @@ class App extends Component{
     this.clearNewCountryState()
   }
 
-  clearAll = () => {
+  // Empties the starred and removal list
+  clearAllClick = () => {
     this.updateState('starredList', [])
     this.updateState('removalList', [])
   }
 
-  clearSelected = (e) => {
+  // Handles the clear selected click, removing selected countries
+  clearSelectedClick = (e) => {
     e.stopPropagation();
     const remainingCountries = this.state.starredList.filter( country => !this.state.removalList.includes(country))
     this.updateState('removalList', [])
     this.updateState('starredList', remainingCountries)
   }
+  
+  // 
+  editCountryDetailsClick = (country) => {
+    this.updateState('editMode', true)
+    this.populateStateWithCountryData(country)
+  }
 
-
+  // Closes the input field and empties required state
   toggleInputFieldOff = () => {
     this.updateState('inputVisibility', false)
     this.clearNewCountryState()
   }
 
-  editCountryDetails = (country) => {
-    this.setState({
-      editMode: true
-    })
-    this.populateStateWithCountryData(country)
-  }
-
+  // Updates existing country data with new inputs
   editExistingCountryData(countryToUpdate) {
     countryToUpdate.altSpellings = []
     countryToUpdate.name = {common: this.state.name};
@@ -137,10 +147,12 @@ class App extends Component{
     countryToUpdate.maps.googleMaps = this.state.mapLink;
   }
 
+  // Opens input screen
   toggleInputScreenOn() {
     this.updateState('inputVisibility', true);
   }
 
+  // On editing an exisitng country, pre-populates the input fields for the user to amend
   populateStateWithCountryData(country) {
     this.setState({
       name: country.name.common,
@@ -158,22 +170,24 @@ class App extends Component{
     this.toggleInputScreenOn()
   }
 
-
-  toggleMethod(country, list, state) {
+  // Adds or removes item from a specficed state list
+  toggleObJFromSpecifiedStateList(country, list, state) {
     const currentList = [...list];
     const countryIndex = currentList.indexOf(country);
     countryIndex >= 0 ? currentList.splice(countryIndex, 1) : currentList.push(country);
         this.updateState(state, currentList);
   }
 
+  // Updates a specified state with given value
   updateState(key, selected) {
     this.setState({
       [key]: selected
     });
   }
 
+  // Clears all the states linked to the Adding/Editing a new Country
   clearNewCountryState() {
-    const resetStates = ['name', 'capital', 'pop', 'subregion', 'drives', 'region', 'fileName', 'borders', 'currency', 'mapLink', 'fileName']
+    const resetStates = ['name', 'capital', 'pop', 'subregion', 'drives', 'region', 'fileName', 'borders', 'currency', 'mapLink', 'file']
     resetStates.forEach(state => this.updateState(state, ''))
   }
   
@@ -209,28 +223,28 @@ class App extends Component{
                 type='search' 
                 placeholder='Search Country....'  
                 value={this.state.searchInput} 
-                onChange={this.inputHandler}></input>
+                onChange={this.searchInputHandler}></input>
               </form>
               {this.state.allCountries.length===0 ? <h1>Fetching.....</h1> 
                 :<CountryList allCountries={this.state.countriesToDisplay} 
                               starredList={this.state.starredList} 
-                              starredToggle={this.starredToggle}/>
+                              starredToggle={this.starredToggleClick}/>
                               }
           </div>
           <div className='country-info'>
             <StarredList starredList={this.state.starredList} 
-                      clearAll={this.clearAll} 
-                      clearSelected={this.clearSelected}
-                      selectedToggle={this.selectedToggle}
-                      addNewCountry={this.addNewCountry}
-                      editCountryDetails={this.editCountryDetails}
+                      clearAll={this.clearAllClick} 
+                      clearSelected={this.clearSelectedClick}
+                      selectedToggle={this.selectedToggleClick}
+                      addNewCountry={this.addNewCountryClick}
+                      editCountryDetails={this.editCountryDetailsClick}
                       />
           </div>
         </main>
         {this.state.inputVisibility && <AddNewCountryPopUp  newCountry={prepopulateInput}
                                                             editMode={this.state.editMode}
                                                             handleNewCountryInput={this.handleNewCountryInput}                                                            
-                                                            addNewCountrySubmit={this.addNewCountrySubmit}
+                                                            addNewCountrySubmit={this.inputPageSubmitClick}
                                                             handleFileUpload={this.handleFileUpload}
                                                             toggleInputFieldOff={this.toggleInputFieldOff}/>}
         <footer>
