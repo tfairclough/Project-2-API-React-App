@@ -122,7 +122,6 @@ class App extends Component{
       currency: ("currencies" in country) ? [...Object.keys(country.currencies).map(key => country.currencies[key].name)].join(" / "): '',
       mapLink: country.maps.googleMaps
     })
-    console.log(this.state.mapLink)
     this.toggleInputInterface()
     this.updateExistingCountryDeatils(country) 
   }
@@ -152,7 +151,6 @@ class App extends Component{
   render() {
 
     const inputVisibility = this.state.inputVisibility ? "visibile" : "invisible";
-    console.log(this.state.mapLink)
     const newCountry ={
         name: this.state.name,
         capital: this.state.capital,
