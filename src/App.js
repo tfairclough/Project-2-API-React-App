@@ -78,6 +78,7 @@ class App extends Component{
     if (!this.state.editMode) {
       const newCountry = {
         name: {common: this.state.name},
+        altSpellings: [],
         population: this.state.pop,
         subregion: this.state.subregion,
         capital: [this.state.capital],
@@ -88,6 +89,7 @@ class App extends Component{
         currencies: {currency: {name: this.state.currency}},
         flags: {png: URL.createObjectURL(this.state.file)}
       }
+      this.state.allCountries.push(newCountry)
       this.state.starredList.push(newCountry)
     } else {
       const countryToUpdate = this.state.allCountries.filter(obj => obj.flags.png === this.state.file)[0]
