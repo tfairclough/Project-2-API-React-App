@@ -202,7 +202,7 @@ class App extends Component{
         </header>
         <main>
           <div className='country-search' >
-            <h3>Search</h3>
+            <h3>Search...</h3>
             <form> 
               <div className='mag-img'></div>
               <input className='search-input'

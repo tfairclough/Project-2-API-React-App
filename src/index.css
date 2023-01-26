@@ -147,7 +147,7 @@ form {
 }
 
 button {
-  height: 27px;
+  height: 28px;
   align-items: center;
   margin: 0 5px;
   appearance: none;
@@ -231,6 +231,7 @@ span {
 }
 
 h3 {
+  font-size: 26px;
   margin: 22px 10px 
 }
 
@@ -269,7 +270,7 @@ fieldset {
 
 .text{
   display: block;
-  margin: 5px 0 20px 0
+  margin: 5px 0 20px 0;
 }
 
 .pop-out-header {
@@ -281,7 +282,7 @@ fieldset {
 }
 
 label {
-  font-size: medium;
+  font-size: 18px;
   font-weight: 500;
 }
 
