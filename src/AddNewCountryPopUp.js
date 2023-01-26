@@ -31,12 +31,12 @@ const AddNewCountryPopUp = (props) => {
                     onChange={props.handleNewCountryInput}></input></label>
       </div>
       <div className='pop-out-fields'>
-        <label>Upload Flag: <input type="file" 
+        {!props.editMode && <label>Upload Flag: <input type="file" 
                     name='fileName' 
                     value={props.newCountry.fileName} 
                     className="text"
                     onChange={props.handleFileUpload}
-                    required></input> </label>
+                    required></input> </label>}
         <label>Borders: <input type="text" 
                     name='borders' 
                     value={props.newCountry.borders}  
@@ -53,13 +53,13 @@ const AddNewCountryPopUp = (props) => {
                     className="text"
                     onChange={props.handleNewCountryInput}></input></label>
         <label>GoogleMap Link: <input type="text" 
-                    name='maplink' 
+                    name='mapLink' 
                     value={props.newCountry.mapLink} 
                     className="text"
                     onChange={props.handleNewCountryInput}></input></label>
       </div>
     </fieldset>
-  <button onClick={props.addNewCountrySubmit}>Add New Country</button>
+  <button onClick={props.addNewCountrySubmit}>Submit Details</button>
   <button onClick={props.toggleInputFieldOff}>Cancel</button>
 </div>
   )

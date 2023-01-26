@@ -24,6 +24,8 @@ class App extends Component{
       mapLink: '',
       borders: '',
       currency: '',
+      file: '',
+      editMode: false
       }
     }
 
@@ -65,26 +67,42 @@ class App extends Component{
 
   }
 
-  toggleInputInterface = (e) => {
-    this.updateState('inputVisibility', true)
+  addNewCountry = (e) => {
+    this.setState({
+      editMode: false
+    })
+    this.toggleInputScreenOn();
   }
 
   addNewCountrySubmit = () => {
-    const newCountry = {
-      name: {common: this.state.name},
-      population: this.state.pop,
-      subregion: this.state.subregion,
-      capital: [this.state.capital],
-      region: this.state.region,
-      maps: {googleMaps: this.state.mapLink},
-      borders: [this.state.borders],
-      car: {side: this.state.drives},
-      currencies: {currency: {name: this.state.currency}},
-      flags: {png: URL.createObjectURL(this.state.file)}
+    if (!this.state.editMode) {
+      const newCountry = {
+        name: {common: this.state.name},
+        population: this.state.pop,
+        subregion: this.state.subregion,
+        capital: [this.state.capital],
+        region: this.state.region,
+        maps: {googleMaps: this.state.mapLink},
+        borders: [this.state.borders],
+        car: {side: this.state.drives},
+        currencies: {currency: {name: this.state.currency}},
+        flags: {png: URL.createObjectURL(this.state.file)}
+      }
+      this.state.starredList.push(newCountry)
+    } else {
+      const countryToUpdate = this.state.allCountries.filter(obj => obj.flags.png === this.state.file)[0]
+      countryToUpdate.name.common = this.state.name
+      countryToUpdate.population = this.state.pop
+      countryToUpdate.subregion =this.state.subregion
+      countryToUpdate.region =this.state.region
+      countryToUpdate.capital = [this.state.capital]
+      countryToUpdate.car.side = this.state.drives
+      countryToUpdate.currencies = {currency: this.state.currency}
+      countryToUpdate.borders = [this.state.borders]
+      countryToUpdate.maps.googleMaps = this.state.mapLink
     }
     this.toggleInputFieldOff();
-    this.state.starredList.push(newCountry)
-    this.clearNewCountryState(newCountry)
+    this.clearNewCountryState()
   }
 
   clearAll = () => {
@@ -106,7 +124,14 @@ class App extends Component{
   }
 
   editCountryDetails = (country) => {
+    this.setState({
+      editMode: true
+    })
     this.populateStateWithCountryData(country)
+  }
+
+  toggleInputScreenOn() {
+    this.updateState('inputVisibility', true);
   }
 
   populateStateWithCountryData(country) {
@@ -120,15 +145,12 @@ class App extends Component{
       drives: country.car.side,
       borders: ("borders" in country) ? country.borders.join(" / ") : 'Island',
       currency: ("currencies" in country) ? [...Object.keys(country.currencies).map(key => country.currencies[key].name)].join(" / "): '',
-      mapLink: country.maps.googleMaps
+      mapLink: country.maps.googleMaps,
+      file: country.flags.png
     })
-    this.toggleInputInterface()
-    this.updateExistingCountryDeatils(country) 
+    this.toggleInputScreenOn()
   }
 
-  updateExistingCountryDeatils() {
-
-  }
 
   toggleMethod(country, list, state) {
     const currentList = [...list];
@@ -151,7 +173,7 @@ class App extends Component{
   render() {
 
     const inputVisibility = this.state.inputVisibility ? "visibile" : "invisible";
-    const newCountry ={
+    const prepopulateInput ={
         name: this.state.name,
         capital: this.state.capital,
         pop: this.state.pop,
@@ -193,12 +215,13 @@ class App extends Component{
                       clearAll={this.clearAll} 
                       clearSelected={this.clearSelected}
                       selectedToggle={this.selectedToggle}
-                      addNewCountry={this.toggleInputInterface}
+                      addNewCountry={this.addNewCountry}
                       editCountryDetails={this.editCountryDetails}
                       />
           </div>
         </main>
-        {this.state.inputVisibility && <AddNewCountryPopUp  newCountry={newCountry}
+        {this.state.inputVisibility && <AddNewCountryPopUp  newCountry={prepopulateInput}
+                                                            editMode={this.state.editMode}
                                                             handleNewCountryInput={this.handleNewCountryInput}                                                            
                                                             addNewCountrySubmit={this.addNewCountrySubmit}
                                                             handleFileUpload={this.handleFileUpload}
