@@ -91,15 +91,7 @@ class App extends Component{
       this.state.starredList.push(newCountry)
     } else {
       const countryToUpdate = this.state.allCountries.filter(obj => obj.flags.png === this.state.file)[0]
-      countryToUpdate.name.common = this.state.name
-      countryToUpdate.population = this.state.pop
-      countryToUpdate.subregion =this.state.subregion
-      countryToUpdate.region =this.state.region
-      countryToUpdate.capital = [this.state.capital]
-      countryToUpdate.car.side = this.state.drives
-      countryToUpdate.currencies = {currency: this.state.currency}
-      countryToUpdate.borders = [this.state.borders]
-      countryToUpdate.maps.googleMaps = this.state.mapLink
+      this.editExistingCountryData(countryToUpdate);
     }
     this.toggleInputFieldOff();
     this.clearNewCountryState()
@@ -128,6 +120,18 @@ class App extends Component{
       editMode: true
     })
     this.populateStateWithCountryData(country)
+  }
+
+  editExistingCountryData(countryToUpdate) {
+    countryToUpdate.name = {common: this.state.name};
+    countryToUpdate.population = this.state.pop;
+    countryToUpdate.subregion = this.state.subregion;
+    countryToUpdate.region = this.state.region;
+    countryToUpdate.capital = [this.state.capital];
+    countryToUpdate.car.side = this.state.drives;
+    countryToUpdate.currencies = {currency: {name: this.state.currency}};
+    countryToUpdate.borders = [this.state.borders];
+    countryToUpdate.maps.googleMaps = this.state.mapLink;
   }
 
   toggleInputScreenOn() {
