@@ -153,6 +153,7 @@ In this section I step through the build process, highlighting extracts from the
 ##  Future Improvments
 - - -
 
+- Improve the design responsiveness to both smaller and mobile screens
 - Add input validation so the user has to enter a minimum set of required inputs
 - Add react hooks to simplify how I am passing props and state
 - Add a Reacte Route to handle mutiple views
