@@ -57,7 +57,7 @@ A tick denotes that the requirement has been delivered in this project release:
 ## Planning
 - - -
 
-My application is a country dictionary that allows a User to look up, favourite and edit details about countries. I wanted the interface to be simple and intuitive to use that was response to screen size and mobile devices. I produced a wireframe to plan the React components and wrote out pseudocode to help structure the project. 
+My application is a country dictionary that allows a User to look up, favourite and edit details about countries. I wanted the interface to be simple and intuitive and responsive to screen size. I produced a wireframe to plan the React components and wrote out pseudocode to help structure the project. 
 
 With one week for development I focused on delivering the core technical requirements while ensuring the page and code could scale to the optional extras. I reserved time for both refactoring and documentation.
 
@@ -74,9 +74,9 @@ With one week for development I focused on delivering the core technical require
 - - -
 In this section I step through the build process, highlighting extracts from the code base:
 
-- Created the core components in React and added placeholders for key functionalities. Added some basic formatting so that I had a basic page structure to work with.
+- Created the core components in React and added placeholders for key functionalities. Added some formatting so that I had a basic page structure to work with.
 
-- Added state to control variables for: 
+- Added a constructor and states to control variables for: 
     1. Input values
     2. Starred objects
     3. Element visibility conditions
@@ -139,17 +139,17 @@ In this section I step through the build process, highlighting extracts from the
                                                             toggleInputFieldOff={this.toggleInputFieldOff}/>}
     ```
 
-- Created an input page that overlays the screen when called. When called using the edit button this pre-populated with the existing data, otherwsie it initiated blank
+- Created an input page that overlays the screen when called. When called using the edit button this pre-populated with the existing data, otherwsie it initiated blank.
 
 
 ## Challenges
 - - -
 
-- Dynamic Components: <br>
-  Allowing components to dynamically change depnding on the state. It allowed me to avoid duplicating code and resuse components with minor adjustments. This was particularly challenging when I attmepted to re-use the input page for both new entries and to edit existing entries. I ended up using state to track every input indiviudally, something which I would refactor into an object in the future. 
+- Dynamic Input Page: <br>
+  I wanted to allow components of the input page to dynamically change depending on a purpose. It allowed me to avoid duplicating code and resuse components with minor adjustments. This was particularly challenging when I attmepted to re-use the input page for both new entries and to edit existing entries. I ended up using state to track every input indiviudally, something which I would refactor into an object in the future. 
 
 - File Uploads <br>
-  This was my first project using file uploads. Although the initial upload was easy to configure, I found it difficult to get those files to consistently work with the exisitng data structures. Getting the orginal file to pre-load into the input when a User went to edit an existing entry became problemtatic.
+  This was my first project using file uploads. Although the initial upload was easy to configure, I found it difficult to get those files to consistently work with the exisitng data structures of the API. Getting the orginal file to pre-load into the input field when a User went to edit an existing entry became problematic.
 
 
 ##  Future Improvments
@@ -157,4 +157,4 @@ In this section I step through the build process, highlighting extracts from the
 
 - Add input validation so the User has to enter a minimum set of required inputs (Name and Flag)
 - Add react hooks to simplify how I am passing props and state
-- Add a Reacte Route to handle mutiple views
+- Add a Reacte Route to handle mutiple page views
