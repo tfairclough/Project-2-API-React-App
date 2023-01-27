@@ -17,7 +17,7 @@ body,
 #root {
   height: 100vh;
   width: 100vw;
-  min-width: 650px;
+  min-width: 550px;
 }
 
 img {
@@ -91,7 +91,7 @@ form {
 .search-list  {
   margin: 25px 10% ;
   padding: 2% 4%;
-  height: 60%;
+  height: 50%;
   overflow-x: hidden;
   overflow-y: scroll;
   box-shadow:0 0 10px 2px rgba(0,0,0,0.35);
@@ -235,8 +235,8 @@ h3 {
 }
 
 footer {
-  text-align: center;
-  margin-top: 20px;
+  text-align:end;
+  margin: 20px;
   font-family: cursive;
   font-size: 15px;
 }
