@@ -15,10 +15,9 @@ code {
 html,
 body,
 #root {
-  height: 100%;
-  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
   min-width: 650px;
-  min-height: 800px;
 }
 
 img {
@@ -92,8 +91,7 @@ form {
 .search-list  {
   margin: 25px 10% ;
   padding: 2% 4%;
-  min-height: 60%;
-  max-height: 60%;
+  height: 60%;
   overflow-x: hidden;
   overflow-y: scroll;
   box-shadow:0 0 10px 2px rgba(0,0,0,0.35);
@@ -171,7 +169,7 @@ button {
 .country-details-list {
   padding: 0 0 10px 40px;
   margin: 25px 0 0 0;
-  height: 80%;
+  max-height: 80%;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -327,4 +325,37 @@ button:active {
 
 .form-button {
   margin: 5px 0 0 0
+}
+
+@media screen and (max-width:650px) {
+
+  html,
+  body,
+  #root {
+    min-width: 550px;
+  }
+
+  .page-title {
+    font-size: 40px;
+  }
+
+  .pop-out-input{
+    min-width: 550px;
+  }
+
+
+  .country-title {
+    font-size: 20px;
+  }
+
+  .flag {
+    width:60px;
+    height: 45px
+  }
+
+  .country-info {
+    display: block;
+    width: 100%;
+  }
+
 }
